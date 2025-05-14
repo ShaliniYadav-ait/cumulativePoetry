@@ -4,9 +4,13 @@ import "sync"
 
 var once sync.Once
 
-type Poem struct {
+type PoemDetails struct {
 	Day   int      `json:"day"`
 	Lines []string `json:"lines"`
+}
+
+type Poem struct {
+	Poem []PoemDetails `json:"poem"`
 }
 
 var p Poem
