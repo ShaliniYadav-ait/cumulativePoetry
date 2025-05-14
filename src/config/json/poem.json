@@ -1,4 +1,4 @@
 {
     "day" : 1,
-    "lines": "this is test"
+    "lines": ["this is test","line 2", "line3"]
 }

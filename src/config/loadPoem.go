@@ -6,7 +6,7 @@ var once sync.Once
 
 type Poem struct {
 	Day   int      `json:"day"`
-	Lines string `json:"lines"`   // TODO update it to slice of string.
+	Lines []string `json:"lines"`
 }
 
 var p Poem

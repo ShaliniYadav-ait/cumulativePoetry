@@ -14,7 +14,7 @@ func Test_getPoemConfig(t *testing.T) {
 			name : "test",
 		want : Poem{
 			Day: 1,
-			Lines : "this is test",
+			Lines : []string{"this is test","line 2","line3"},
 		},
 	},
 	}
