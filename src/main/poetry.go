@@ -11,7 +11,8 @@ func recitePoem() string {
 }
 
 func revealforDay(day int) string {
-	return ""
+	poem := c.GetPoemConfig()
+	return poemForDay(day, poem)
 }
 
 func poemToString(poem c.Poem) string {
@@ -32,4 +33,8 @@ func dayDetailsToString(dayDetails c.PoemDetails) string {
 
 	dayDetailsString += poemLines
 	return dayDetailsString
+}
+
+func poemForDay(day int, poem c.Poem) string {
+	return dayDetailsToString(poem[day-1])
 }

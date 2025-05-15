@@ -9,9 +9,6 @@ type PoemDetails struct {
 	Lines []string `json:"lines"`
 }
 
-// type Poem struct {
-// 	Poem []PoemDetails `json:"poem"`
-// }
 type Poem []PoemDetails 
 var p Poem
 
