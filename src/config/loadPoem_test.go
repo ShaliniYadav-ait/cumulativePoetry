@@ -6,7 +6,25 @@ import (
 )
 
 func Test_getPoemConfig(t *testing.T) {
+	tests := []struct {
+		name string
+		want Poem
+	}{
+		{
+			name: "test",
+			want: poemConfig(),
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := GetPoemConfig(); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("getPoemConfig() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
 
+func poemConfig() []PoemDetails {
 	poemConfig := []PoemDetails{
 		{1, []string{"Two roads diverged in a yellow wood,"}},
 		{2, []string{"And be one traveler, long I stood",
@@ -35,21 +53,5 @@ func Test_getPoemConfig(t *testing.T) {
 			"I took the one less traveled by,And that has made all the difference."},
 		},
 	}
-
-	tests := []struct {
-		name string
-		want Poem
-	}{
-		{
-			name: "test",
-			want: poemConfig,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := getPoemConfig(); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("getPoemConfig() = %v, want %v", got, tt.want)
-			}
-		})
-	}
+	return poemConfig
 }

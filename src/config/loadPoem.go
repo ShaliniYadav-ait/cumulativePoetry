@@ -15,7 +15,7 @@ type PoemDetails struct {
 type Poem []PoemDetails 
 var p Poem
 
-func getPoemConfig() Poem {
+func GetPoemConfig() Poem {
 	once.Do(func() {
 		LoadConfig("poem.json", &p)
 	})
