@@ -6,18 +6,25 @@ import (
 )
 
 func Test_recitePoem(t *testing.T) {
+	type args struct {
+		echo bool
+	}
 	tests := []struct {
 		name string
+		args args
 		want string
 	}{
 		{
 			name: "test recite method",
+			args: args{
+				echo: false,
+			},
 			want: poemInStringFormat(),
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := recitePoem(); got != tt.want {
+			if got := recitePoem(tt.args.echo); got != tt.want {
 				t.Errorf("recitePoem() = %v, want %v", got, tt.want)
 			}
 		})
@@ -27,6 +34,7 @@ func Test_recitePoem(t *testing.T) {
 func Test_poemToString(t *testing.T) {
 	type args struct {
 		poem c.Poem
+		echo bool
 	}
 	tests := []struct {
 		name string
@@ -37,13 +45,14 @@ func Test_poemToString(t *testing.T) {
 			name: "convert poem to string",
 			args: args{
 				poem: c.GetPoemConfig(),
+				echo : false,
 			},
 			want: poemInStringFormat(),
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := poemToString(tt.args.poem); got != tt.want {
+			if got := poemToString(tt.args.poem,tt.args.echo); got != tt.want {
 				t.Errorf("poemToString() = %v, want %v", got, tt.want)
 			}
 		})
@@ -53,6 +62,7 @@ func Test_poemToString(t *testing.T) {
 func Test_dayDetailsToString(t *testing.T) {
 	type args struct {
 		dayDetails c.PoemDetails
+		echo       bool
 	}
 	tests := []struct {
 		name string
@@ -63,16 +73,17 @@ func Test_dayDetailsToString(t *testing.T) {
 			name: "check for day 3 details",
 			args: args{
 				dayDetails: getDayDetails(3),
+				echo:       false,
 			},
 			want: "Day 3 - " + "\n" +
-				"And sorry I could not travel both" + "\n" +
-				"And be one traveler, long I stood" + "\n" +
-				"And looked down one as far as I could",
+				"and sorry I could not travel both" + "\n" +
+				"and be one traveler, long I stood" + "\n" +
+				"and looked down one as far as I could",
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := dayDetailsToString(tt.args.dayDetails); got != tt.want {
+			if got := dayDetailsToString(tt.args.dayDetails, tt.args.echo); got != tt.want {
 				t.Errorf("dayDetailsToString() = %v, want %v", got, tt.want)
 			}
 		})
@@ -88,28 +99,28 @@ func poemInStringFormat() string {
 	poemInString := "\n" + "Day 1 - " + "\n" +
 		"Two roads diverged in a yellow wood," + "\n" +
 		"Day 2 - " + "\n" +
-		"And be one traveler, long I stood" + "\n" +
-		"And looked down one as far as I could" + "\n" +
+		"and be one traveler, long I stood" + "\n" +
+		"and looked down one as far as I could" + "\n" +
 		"Day 3 - " + "\n" +
-		"And sorry I could not travel both" + "\n" +
-		"And be one traveler, long I stood" + "\n" +
-		"And looked down one as far as I could" + "\n" +
+		"and sorry I could not travel both" + "\n" +
+		"and be one traveler, long I stood" + "\n" +
+		"and looked down one as far as I could" + "\n" +
 		"Day 4 - " + "\n" +
 		"To where it bent in the undergrowth." + "\n" +
-		"Then took the other, as just as fair," + "\n" +
-		"And having perhaps the better claim," + "\n" +
-		"Because it was grassy and wanted wear." + "\n" +
+		"then took the other, as just as fair," + "\n" +
+		"and having perhaps the better claim," + "\n" +
+		"because it was grassy and wanted wear." + "\n" +
 		"Day 5 - " + "\n" +
 		"Though as for that the passing there" + "\n" +
-		"Had worn them really about the same," + "\n" +
-		"And both that morning equally lay" + "\n" +
-		"In leaves no step had trodden black." + "\n" +
+		"had worn them really about the same," + "\n" +
+		"and both that morning equally lay" + "\n" +
+		"in leaves no step had trodden black." + "\n" +
 		"Oh, I kept the first for another day!" + "\n" +
 		"Day 6 - " + "\n" +
 		"Yet knowing how way leads on to way," + "\n" +
 		"I doubted if I should ever come back." + "\n" +
 		"I shall be telling this with a sigh" + "\n" +
-		"Somewhere ages and ages hence:" + "\n" +
+		"somewhere ages and ages hence:" + "\n" +
 		"Two roads diverged in a wood, and I—" + "\n" +
 		"I took the one less traveled by,And that has made all the difference."
 	return poemInString
